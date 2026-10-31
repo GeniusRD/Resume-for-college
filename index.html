@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ruchir Dhasmana · Banking & Finance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#e8eee9; --sheet:#f5f8f5; --ink:#0f2342; --soft:#4a5b73; --rule:#9fb5cf; --brass:#9a7425; --red:#b3261e; --ok:#1f6b4a;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif; --body:"Newsreader",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#0c1626;--sheet:#13223a;--ink:#e6edf7;--soft:#9db0c8;--rule:#32496b;--brass:#d6b160;--red:#ff8a80;--ok:#6fd1a4}}
+:root[data-theme="dark"]{--paper:#0c1626;--sheet:#13223a;--ink:#e6edf7;--soft:#9db0c8;--rule:#32496b;--brass:#d6b160;--red:#ff8a80;--ok:#6fd1a4}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1.125rem/1.6 var(--body);
+  background-image:repeating-linear-gradient(to bottom,transparent 0 31px,color-mix(in srgb,var(--rule) 35%,transparent) 31px 32px)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--brass);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem)}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1.02;letter-spacing:-.02em}
+nav{display:flex;justify-content:space-between;align-items:center;padding:1.4rem 0;font-family:var(--display);font-size:.95rem}
+nav .links{display:flex;gap:1.4rem;flex-wrap:wrap}
+nav a{text-decoration:none;color:var(--soft)}nav a:hover{color:var(--ink)}
+nav b{font-weight:800}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(1.5rem,5vw,4rem);align-items:center;padding:clamp(2rem,7vw,5rem) 0 clamp(2.5rem,7vw,5rem)}
+.hero h1{font-size:clamp(3rem,9vw,6.6rem);font-weight:800}
+.hero h1 span{display:block;color:var(--brass)}
+.hero p.lead{max-width:34ch;color:var(--soft);font-size:1.3rem;margin:1.4rem 0 1.8rem}
+.cta{display:flex;gap:.8rem;flex-wrap:wrap;font-family:var(--display);font-weight:700;font-size:.95rem}
+.cta a{padding:.8rem 1.3rem;border:2px solid var(--ink);text-decoration:none;border-radius:2px;transition:background .2s,color .2s}
+.cta a.p{background:var(--ink);color:var(--paper)}
+.cta a:hover{background:var(--brass);border-color:var(--brass);color:#fff}
+
+/* the ledger: the one memorable thing */
+.ledger{background:var(--sheet);border:1px solid var(--rule);box-shadow:8px 8px 0 var(--rule);padding:1.2rem 1.2rem 1rem;font-size:.95rem;position:relative}
+.ledger::before{content:"";position:absolute;inset:0 auto 0 2.6rem;border-left:2px solid var(--red);opacity:.45;pointer-events:none}
+.ledger header{display:flex;justify-content:space-between;font-family:var(--display);font-weight:700;border-bottom:2px solid var(--ink);padding-bottom:.5rem;margin-bottom:.3rem;font-size:.9rem}
+.ledger .row{display:grid;grid-template-columns:1fr 5.2rem 5.2rem;gap:.5rem;padding:.42rem 0 .42rem 2.4rem;border-bottom:1px solid var(--rule);opacity:0;transform:translateY(6px);font-variant-numeric:tabular-nums}
+.ledger .row.in{opacity:1;transform:none;transition:opacity .45s,transform .45s}
+.ledger .row span:nth-child(n+2){text-align:right}
+.ledger .tot{display:grid;grid-template-columns:1fr 5.2rem 5.2rem;gap:.5rem;padding:.6rem 0 .3rem 2.4rem;font-family:var(--display);font-weight:800;border-top:3px double var(--ink);margin-top:.3rem;font-variant-numeric:tabular-nums}
+.tot span:nth-child(n+2){text-align:right}
+.diff{display:flex;justify-content:space-between;align-items:center;padding:.5rem 0 0 2.4rem;font-family:var(--display);font-size:.85rem;color:var(--soft)}
+.stamp{font-weight:800;color:var(--ok);border:2px solid var(--ok);padding:.15rem .6rem;border-radius:3px;transform:rotate(-6deg) scale(1.8);opacity:0;letter-spacing:.04em}
+.stamp.in{opacity:1;transform:rotate(-6deg) scale(1);transition:transform .35s cubic-bezier(.2,1.6,.4,1),opacity .2s}
+.note{font-size:.78rem;color:var(--soft);margin:.7rem 0 0 2.4rem;font-style:italic}
+
+/* sections */
+section{padding:clamp(2.5rem,6vw,4.5rem) 0;border-top:2px solid var(--ink)}
+.sec{display:grid;grid-template-columns:minmax(0,220px) 1fr;gap:clamp(1rem,4vw,3rem)}
+.sec>h2{font-size:clamp(1.8rem,3.4vw,2.4rem);position:sticky;top:1rem;align-self:start}
+.entry h3{font-size:1.6rem}
+.meta{font-family:var(--display);font-size:.9rem;color:var(--brass);font-weight:700;margin:.4rem 0 1rem}
+ul.k{padding:0;list-style:none;margin:0;max-width:62ch}
+ul.k li{padding:.8rem 0 .8rem 1.6rem;border-bottom:1px dashed var(--rule);position:relative}
+ul.k li::before{content:"Cr";position:absolute;left:0;top:.95rem;font:700 .7rem var(--display);color:var(--ok)}
+ul.k li{padding-left:2.2rem}
+.chips{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.5rem}
+.chips span{font-family:var(--display);font-weight:700;font-size:.9rem;padding:.35rem .8rem;border:1.5px solid var(--ink);border-radius:99px}
+
+/* education timeline: a true sequence */
+.tl{list-style:none;margin:0;padding:0 0 0 1.6rem;border-left:2px solid var(--ink)}
+.tl li{position:relative;padding:0 0 1.8rem 1rem;display:grid;grid-template-columns:5rem 1fr auto;gap:1rem;align-items:baseline}
+.tl li::before{content:"";position:absolute;left:calc(-1.6rem - 7px);top:.55rem;width:12px;height:12px;background:var(--paper);border:3px solid var(--brass);border-radius:50%}
+.tl li:first-child::before{background:var(--brass)}
+.tl .y{font-family:var(--display);font-weight:800;font-size:1.1rem}
+.tl h3{font-size:1.2rem}.tl p{margin:.1rem 0 0;color:var(--soft);font-size:1rem}
+.tl .s{font-family:var(--display);font-weight:700;color:var(--ok);text-align:right}
+
+.certs{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:0;border:1px solid var(--rule);background:var(--sheet)}
+.certs div{padding:1rem 1.1rem;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);margin:0 -1px -1px 0}
+.certs b{display:block;font-family:var(--display);line-height:1.2}
+.certs small{color:var(--soft);font-size:.9rem}
+.certs .hl{background:var(--ink);color:var(--paper)}.certs .hl small{color:var(--rule)}
+.contact{display:flex;flex-wrap:wrap;gap:2rem;font-family:var(--display)}
+.contact a{font-size:clamp(1.2rem,3vw,1.8rem);font-weight:800;text-decoration-thickness:3px;text-underline-offset:6px;text-decoration-color:var(--brass)}
+footer{padding:2rem 0 3rem;color:var(--soft);font-size:.9rem;font-family:var(--display);display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem}
+@media(max-width:820px){.hero,.sec{grid-template-columns:1fr}.sec>h2{position:static}.tl li{grid-template-columns:1fr}.tl .s{text-align:left}}
+@media(max-width:480px){.ledger .row,.ledger .tot{grid-template-columns:1fr 4.3rem 4.3rem}.ledger{font-size:.85rem}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}.ledger .row,.stamp{opacity:1;transform:none}.stamp{transform:rotate(-6deg)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><b>R. Dhasmana</b><div class="links"><a href="#work">Experience</a><a href="#study">Education</a><a href="#certs">Certifications</a><a href="#contact">Contact</a></div></nav>
+
+<main>
+<div class="hero">
+  <div>
+    <h1>Ruchir <span>Dhasmana</span></h1>
+    <p class="lead">MBA candidate in Banking and Finance at Symbiosis School of Banking and Finance, Pune. I keep the books accurate and the records clean.</p>
+    <div class="cta"><a class="p" href="mailto:ruchir.dhasmana.26-28@ssbf.edu.in">Email me</a><a href="https://linkedin.com/in/ruchir-dhasmana" rel="noopener">LinkedIn</a></div>
+  </div>
+
+  <div class="ledger" role="img" aria-label="An animated sample ledger whose debits and credits balance to zero difference">
+    <header><span>General ledger</span><span>₹ Dr &nbsp; ₹ Cr</span></header>
+    <div id="rows"></div>
+    <div class="tot"><span>Totals</span><span id="td">0</span><span id="tc">0</span></div>
+    <div class="diff"><span>Difference: <b id="df">0</b></span><span class="stamp" id="st">RECONCILED</span></div>
+    <p class="note">Sample entries, shown for illustration.</p>
+  </div>
+</div>
+
+<section id="work"><div class="sec">
+  <h2>Experience</h2>
+  <div class="entry">
+    <h3>Finance Intern, Truein</h3>
+    <div class="meta">Pune · 26 May – 31 July 2025 · 2 months</div>
+    <ul class="k">
+      <li>Managed invoice creation, proforma invoices and financial documentation, keeping records accurate, consistent and on time.</li>
+      <li>Handled data entry and organised customer and financial records. Assisted account reconciliation by verifying transactions and resolving discrepancies.</li>
+      <li>Maintained payment records and updated customer GSTIN details to support accurate billing and compliance-related processes.</li>
+    </ul>
+    <div class="chips"><span>Advanced Excel</span><span>Tally Pro</span><span>Tally Ace</span><span>Reconciliation</span><span>GST records</span></div>
+  </div>
+</div></section>
+
+<section id="study"><div class="sec">
+  <h2>Education</h2>
+  <ol class="tl">
+    <li><span class="y">2026–28</span><div><h3>MBA, Banking and Finance</h3><p>Symbiosis School of Banking and Finance, Symbiosis International University, Pune</p></div><span class="s">Pursuing</span></li>
+    <li><span class="y">2024</span><div><h3>BBA</h3><p>MIT World Peace University, Pune</p></div><span class="s">81.90%</span></li>
+    <li><span class="y">2021</span><div><h3>Class 12, CBSE</h3><p>D.A.V Public School, Pune</p></div><span class="s">76.40%</span></li>
+    <li><span class="y">2019</span><div><h3>Class 10, ICSE</h3><p>The Bishop’s School, Camp, Pune</p></div><span class="s">82.80%</span></li>
+  </ol>
+</div></section>
+
+<section id="certs"><div class="sec">
+  <h2>Certifications</h2>
+  <div>
+    <div class="certs">
+      <div class="hl"><b>NISM Series V-A</b><small>Mutual Fund Distributor · 2026</small></div>
+      <div><b>Certified Investment Banking Operations</b><small>Imarticus Learning · 2025</small></div>
+      <div><b>Firm Level Economics</b><small>Coursera · 2026</small></div>
+      <div><b>Financial Accounting</b><small>Coursera · 2026</small></div>
+      <div><b>Finance for Non-Finance</b><small>Coursera · 2026</small></div>
+      <div><b>Basic Statistics</b><small>Coursera · 2026</small></div>
+      <div><b>Impactful Workplace Communication</b><small>Coursera · 2026</small></div>
+      <div><b>Financial Markets</b><small>Coursera · 2024</small></div>
+      <div><b>Tally Pro</b><small>Tally · 2023</small></div>
+      <div><b>Tally Ace</b><small>Tally · 2022</small></div>
+    </div>
+    <p style="margin-top:1.4rem;color:var(--soft)">Member of the Communication Enhancement Committee, SSBF (2026). Languages: English, Hindi. Outside work: drawing, singing and basketball.</p>
+  </div>
+</div></section>
+
+<section id="contact"><div class="sec">
+  <h2>Contact</h2>
+  <div class="contact">
+    <a href="mailto:ruchir.dhasmana.26-28@ssbf.edu.in">ruchir.dhasmana.26-28@ssbf.edu.in</a>
+    <a href="tel:+919422057936">+91 94220 57936</a>
+    <a href="https://linkedin.com/in/ruchir-dhasmana" rel="noopener">linkedin.com/in/ruchir-dhasmana</a>
+  </div>
+</div></section>
+</main>
+<footer><span>Ruchir Dhasmana · SSBF Pune, Batch of 2026–28</span><span>Placement: placement@ssbf.edu.in</span></footer>
+</div>
+
+<script>
+(function(){
+  var E=[["Invoice raised, proforma issued",120000,0],["Payment received, customer account",0,120000],["GSTIN updated on customer record",0,0],["Bank entry matched to invoice",45000,0],["Discrepancy resolved, posted",0,45000]];
+  var rows=document.getElementById('rows'),td=document.getElementById('td'),tc=document.getElementById('tc'),df=document.getElementById('df'),st=document.getElementById('st');
+  var fmt=function(n){return n?n.toLocaleString('en-IN'):'–'};
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var D=0,C=0;
+  E.forEach(function(e){var r=document.createElement('div');r.className='row';r.innerHTML='<span>'+e[0]+'</span><span>'+fmt(e[1])+'</span><span>'+fmt(e[2])+'</span>';rows.appendChild(r)});
+  function show(i){var r=rows.children[i];r.classList.add('in');D+=E[i][1];C+=E[i][2];td.textContent=D.toLocaleString('en-IN');tc.textContent=C.toLocaleString('en-IN');df.textContent=Math.abs(D-C).toLocaleString('en-IN');df.style.color=D===C?'var(--ok)':'var(--red)'}
+  if(reduce){E.forEach(function(_,i){show(i)});st.classList.add('in');return}
+  var i=0;(function step(){if(i<E.length){show(i++);setTimeout(step,i===E.length?900:650)}else{st.classList.add('in')}})();
+  // posting happens in sequence; debits and credits are unequal mid-way, then settle at 0
+})();
+</script>
+</body>
+</html>
